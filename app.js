@@ -1,4 +1,3 @@
-
 /**
 * Module dependencies.
 */
@@ -11,8 +10,6 @@ var express = require('express')
 , googleapis = require('googleapis')
 , OAuth2Client = googleapis.OAuth2Client
 , config = require('./config.json');
-
-var gTokens = {};
 
 var oauth2Client = new OAuth2Client(config.CLIENT_ID, config.CLIENT_SECRET, config.REDIRECT_URL);
 
