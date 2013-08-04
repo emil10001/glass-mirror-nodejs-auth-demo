@@ -3,6 +3,8 @@ Glass Mirror API using node.js Demo
 
 A brief demo showing how to authenticate and make a couple simple requests with the Google Glass Mirror API using node.js
 
+[Here's a blog post detailing the code contained in this repo.](http://www.recursiverobot.com/post/57348836217/getting-started-with-the-mirror-api-using-node-js)
+
 All this does right now is allows a user to authenticate, pushes the message 'hello world' to Glass, and requests the user's timeline for the registered app. 
 
 # Instructions
