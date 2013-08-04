@@ -97,8 +97,7 @@ app.get('/', function(req,res){
 
 });
 app.get('/oauth2callback', function(req, res){
-    var code = req.query.code;
-    // if we're able to grab the token, redirec the user back to the main page
+    // if we're able to grab the token, redirect the user back to the main page
     grabToken(req.query.code, failure, function(){ res.redirect('/'); });
 });
 
