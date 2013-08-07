@@ -4,7 +4,6 @@
 
 var express = require('express')
 , routes = require('./routes')
-, user = require('./routes/user')
 , http = require('http')
 , path = require('path')
 , googleapis = require('googleapis')
@@ -31,8 +30,8 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-var success = function(data) { console.log('success',data); }
-var failure = function(data) { console.log('failure',data); }
+var success = function(data) { console.log('success',data); };
+var failure = function(data) { console.log('failure',data); };
 var gotToken = function () {
     googleapis
     .discover('mirror', 'v1')
@@ -46,9 +45,15 @@ var gotToken = function () {
     });
 };
 
+// send a simple 'hello world' timeline card with a delete option
 var insertHello = function(client, errorCallback, successCallback){
     client
-    .mirror.timeline.insert({"text": "Hello world"})
+    .mirror.timeline.insert(
+        {
+            "text": "Hello world",
+            "menuItems": [{"action": "DELETE"}]
+        }
+        )
     .withAuthClient(oauth2Client)
     .execute(function(err, data){
         if (!!err)
@@ -92,7 +97,7 @@ app.get('/', function(req,res){
     } else {
         gotToken();
     }
-    res.send('something happened');
+    res.render('index', { title: 'Glass Mirror API with Node' });
     res.end();
 
 });
@@ -105,4 +110,3 @@ app.get('/oauth2callback', function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
-
