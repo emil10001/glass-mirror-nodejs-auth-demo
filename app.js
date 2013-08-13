@@ -1,6 +1,6 @@
 /**
-* Module dependencies.
-*/
+ * Module dependencies.
+ */
 
 var express = require('express')
 , routes = require('./routes')
@@ -40,8 +40,10 @@ var gotToken = function () {
             failure();
             return;
         }
+        console.log('mirror client',client);
         listTimeline(client, failure, success);
         insertHello(client, failure, success);
+        insertContact(client, failure, success);
     });
 };
 
@@ -53,7 +55,29 @@ var insertHello = function(client, errorCallback, successCallback){
             "text": "Hello world",
             "menuItems": [{"action": "DELETE"}]
         }
-        )
+    )
+    .withAuthClient(oauth2Client)
+    .execute(function(err, data){
+        if (!!err)
+            errorCallback(err);
+        else
+            successCallback(data);
+    });
+};
+var insertContact = function(client, errorCallback, successCallback){
+    client
+    .mirror.contacts.insert(
+        {
+            "id": "harold",
+            "displayName": "Harold Penguin",
+            "iconUrl": "https://developers.google.com/glass/images/harold.jpg",
+            "priority": 7,
+            "acceptCommands": [
+                {"type": "POST_AN_UPDATE"},
+                {"type": "TAKE_A_NOTE"}
+            ]
+        }
+    )
     .withAuthClient(oauth2Client)
     .execute(function(err, data){
         if (!!err)
