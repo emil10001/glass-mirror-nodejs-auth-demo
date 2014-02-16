@@ -11,7 +11,7 @@ All this does right now is allows a user to authenticate, pushes the message 'he
 
 * follow the instructions in the [Mirror API](https://developers.google.com/glass/overview) documentation for registering a new app
 * pull down this repository and run `npm install`
-* copy `sample_config.json` to `config.json`, and replace the values with those from the Google Developer's console
+* create environment variables for client id, secret, and callback url, using the values from the Google Developer's console
 * run `node app.js`
 * visit the app in your browser, and authenticate with Google
 
