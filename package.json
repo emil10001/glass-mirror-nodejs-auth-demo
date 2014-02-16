@@ -1,13 +1,19 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "3.3.4",
-    "googleapis": "0.4.2",
-    "jade": "*"
-  }
+    "name": "glass-mirror-nodejs-demo",
+    "version": "0.0.1",
+    "private": true,
+    "author": "ejohn@feigdev.com",
+    "bugs": "ejohn@feigdev.com",
+    "contributors": "ejohn@feigdev.com",
+    "keywords": ["glass", "mirror api"],
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.3.4",
+        "googleapis": "0.4.2"
+    },
+    "engines": {
+        "node": "0.10.22"
+    }
 }
