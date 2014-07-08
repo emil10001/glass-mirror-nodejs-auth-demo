@@ -49,7 +49,7 @@ var gotToken = function () {
         });
 };
 
-// send a simple 'hello world' timeline card with a delete option
+// send a simple 'hello world' timeline insert card with a reply and delete options
 var insertHello = function (client, errorCallback, successCallback) {
     client
         .mirror.timeline.insert(
@@ -71,7 +71,7 @@ var insertHello = function (client, errorCallback, successCallback) {
         });
 };
 
-// send a simple 'hello world' timeline card with a delete option
+// send a simple "Let's meet at the Hacker Dojo!" message timeline insert card with a nested property of "location" showing the associated GPS location associated with the "location". Navigate, Reply, and Delete options.
 var insertLocation = function (client, errorCallback, successCallback) {
     client
         .mirror.timeline.insert(
