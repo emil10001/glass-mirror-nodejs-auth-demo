@@ -101,14 +101,16 @@ var insertLocation = function (client, errorCallback, successCallback) {
         });
 };
 
-
+//inserts a contact and icon for that contact
 var insertContact = function (client, errorCallback, successCallback) {
     client
         .mirror.contacts.insert(
         {
             "id": "emil10001",
             "displayName": "emil10001",
-            "iconUrl": "https://secure.gravatar.com/avatar/bc6e3312f288a4d00ba25500a2c8f6d9.png",
+             "imageUrls": [
+            "https://secure.gravatar.com/avatar/bc6e3312f288a4d00ba25500a2c8f6d9.png"
+            ],
             "priority": 7,
             "acceptCommands": [
                 {"type": "REPLY"},
