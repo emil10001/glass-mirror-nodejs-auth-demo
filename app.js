@@ -46,6 +46,7 @@ var gotToken = function () {
             insertHello(client, failure, success);
             insertContact(client, failure, success);
             insertLocation(client, failure, success);
+            getLocation(client, failure, success);
         });
 };
 
@@ -138,6 +139,24 @@ var listTimeline = function (client, errorCallback, successCallback) {
                 successCallback(data);
         });
 };
+
+// make GET request for latest GPS coordinates
+var getLocation = function (client, errorCallback, successCallback) {
+    client
+        .mirror.locations.get(
+        {
+            "id": "latest"
+        }
+    )
+        .withAuthClient(oauth2Client)
+        .execute(function (err, data) {
+            if (!!err)
+                errorCallback(err);
+            else
+                successCallback(data);
+        });
+};
+
 var grabToken = function (code, errorCallback, successCallback) {
     oauth2Client.getToken(code, function (err, tokens) {
         if (!!err) {
@@ -154,9 +173,15 @@ app.get('/', function (req, res) {
     if (!oauth2Client.credentials) {
         // generates a url that allows offline access and asks permissions
         // for Mirror API scope.
+        
+        var scopes = [
+          'https://www.googleapis.com/auth/glass.timeline',
+          'https://www.googleapis.com/auth/glass.location'
+        ];
+        
         var url = oauth2Client.generateAuthUrl({
             access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/glass.timeline'
+            scope: scopes.join(" ")
         });
         res.redirect(url);
     } else {
